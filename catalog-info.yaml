@@ -3,7 +3,7 @@ kind: Component
 
 metadata:
   name: opentofu-datadog-google-integration
-  description: Terraform example module for Datadog Google Cloud Platform integration
+  description: OpenTofu example module for Datadog Google Cloud Platform integration
 
   annotations:
     github.com/project-slug: osinfra/opentofu-datadog-google-integration
@@ -13,8 +13,8 @@ metadata:
     - datadog
     - infrastructure-as-code
     - google-cloud-platform
-    - terraform
-    - terraform-child-module
+    - opentofu
+    - opentofu-child-module
 
 spec:
   type: library

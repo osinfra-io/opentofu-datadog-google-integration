@@ -1,8 +1,8 @@
-# <img align="left" width="45" height="45" src="https://github.com/osinfra-io/opentofu-datadog-google-integration/assets/1610100/95823e0c-3573-48fa-a2bc-646da96d76d6"> Datadog - Google Cloud Platform Integration Terraform Module
+# <img align="left" width="45" height="45" src="https://github.com/osinfra-io/opentofu-datadog-google-integration/assets/1610100/95823e0c-3573-48fa-a2bc-646da96d76d6"> Datadog - Google Cloud Platform Integration OpenTofu Module
 
 **[GitHub Actions](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions):**
 
-[![Terraform Tests](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/test.yml/badge.svg)](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/test.yml) [![Dependabot](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/dependabot.yml)
+[![OpenTofu Tests](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/test.yml/badge.svg)](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/test.yml) [![Dependabot](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/dependabot.yml)
 
 **[Infracost](https://www.infracost.io):**
 
@@ -12,7 +12,7 @@
 
 ## Repository Description
 
-Terraform **example** module for Datadog Google Cloud Platform integration.
+OpenTofu **example** module for Datadog Google Cloud Platform integration.
 
 > [!NOTE]
 > We do not recommend consuming this module like you might a [public module](https://search.opentofu.org). It is a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.
@@ -22,7 +22,7 @@ Terraform **example** module for Datadog Google Cloud Platform integration.
 > [!TIP]
 > You can check the [fixtures](fixtures) directory for example configurations. These fixtures set up the system for testing by providing all the necessary initial code, thus creating good examples on which to base your configurations.
 
-Required APIs (managed with the [terraform-google-project](https://github.com/osinfra-io/terraform-google-project) child module):
+Required APIs (managed with the [opentofu-google-project](https://github.com/osinfra-io/opentofu-google-project) child module):
 
 - `bigquerydatatransfer.googleapis.com` (If `enable_cloud_cost_management` is `true`)
 - `bigquery.googleapis.com` (If `enable_cloud_cost_management` is `true`)
@@ -42,7 +42,7 @@ Our focus is on the core fundamental practice of platform engineering, Infrastru
 
 >Open Source Infrastructure (as Code) is a development model for infrastructure that focuses on open collaboration and applying relative lessons learned from software development practices that organizations can use internally at scale. - [Open Source Infrastructure (as Code)](https://www.osinfra.io)
 
-To avoid slowing down stream-aligned teams, we want to open up the possibility for contributions. The Open Source Infrastructure (as Code) model allows team members external to the platform team to contribute with only a slight increase in cognitive load. This section is for developers who want to contribute to this repository, describing the tools used, the skills, and the knowledge required, along with Terraform documentation.
+To avoid slowing down stream-aligned teams, we want to open up the possibility for contributions. The Open Source Infrastructure (as Code) model allows team members external to the platform team to contribute with only a slight increase in cognitive load. This section is for developers who want to contribute to this repository, describing the tools used, the skills, and the knowledge required, along with OpenTofu documentation.
 
 See the documentation for setting up a local development environment [here](https://docs.osinfra.io/fundamentals/development-setup).
 
@@ -71,6 +71,6 @@ tofu init
 tofu test
 ```
 
-## 📓 Terraform Documentation
+## 📓 OpenTofu Documentation
 
 > A child module automatically inherits default (un-aliased) provider configurations from its parent. The provider versions below are informational only and do **not** need to align with the provider configurations from its parent.
