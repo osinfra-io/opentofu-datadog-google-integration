@@ -1,5 +1,5 @@
 # Datadog Provider
-# https://registry.terraform.io/providers/DataDog/datadog/latest/docs
+# https://search.opentofu.org/provider/DataDog/datadog/latest/docs
 
 terraform {
   required_providers {
@@ -10,7 +10,7 @@ terraform {
 }
 
 # Datadog Integration Google Resource
-# https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/integration_gcp_sts
+# https://search.opentofu.org/provider/DataDog/datadog/latest/docs/resources/integration_gcp_sts
 
 resource "datadog_integration_gcp_sts" "this" {
   client_email                          = google_service_account.integration.email
@@ -22,7 +22,7 @@ resource "datadog_integration_gcp_sts" "this" {
 }
 
 # Google BigQuery Dataset Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/bigquery_dataset
 
 resource "google_bigquery_dataset" "billing_export" {
 
@@ -41,7 +41,7 @@ resource "google_bigquery_dataset" "billing_export" {
 }
 
 # Google BigQuery Dataset IAM Member Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member
 
 resource "google_bigquery_dataset_iam_member" "billing_export" {
   count = var.enable_cloud_cost_management ? 1 : 0
@@ -53,7 +53,7 @@ resource "google_bigquery_dataset_iam_member" "billing_export" {
 }
 
 # Google Cloud Asset Project Feed Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_asset_project_feed
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/cloud_asset_project_feed
 
 resource "google_cloud_asset_project_feed" "export_asset_changes_to_datadog" {
   asset_types = [".*"]
@@ -69,7 +69,7 @@ resource "google_cloud_asset_project_feed" "export_asset_changes_to_datadog" {
 }
 
 # Google Service Account Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/google_service_account
 
 resource "google_service_account" "integration" {
   account_id   = "datadog"
@@ -78,7 +78,7 @@ resource "google_service_account" "integration" {
 }
 
 # Google Service Account IAM Member Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account_iam_member
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/google_service_account_iam_member
 
 resource "google_service_account_iam_member" "integration" {
   member             = "serviceAccount:${datadog_integration_gcp_sts.this.delegate_account_email}"
@@ -87,7 +87,7 @@ resource "google_service_account_iam_member" "integration" {
 }
 
 # Google Storage Bucket Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/storage_bucket
 
 resource "google_storage_bucket" "cloud_cost_management" {
 
@@ -110,7 +110,7 @@ resource "google_storage_bucket" "cloud_cost_management" {
 }
 
 # Google Storage Bucket IAM Member Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/storage_bucket_iam_member
 
 resource "google_storage_bucket_iam_member" "cloud_cost_management" {
   for_each = var.enable_cloud_cost_management ? toset([
@@ -124,7 +124,7 @@ resource "google_storage_bucket_iam_member" "cloud_cost_management" {
 }
 
 # Google Project IAM Member Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_member
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_member
 
 resource "google_project_iam_member" "this" {
   for_each = toset([
@@ -142,7 +142,7 @@ resource "google_project_iam_member" "this" {
 }
 
 # Google PubSub Topic Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/pubsub_topic
 
 resource "google_pubsub_topic" "export_asset_changes_to_datadog" {
 
@@ -167,7 +167,7 @@ resource "google_pubsub_topic" "integration" {
 }
 
 # Google PubSub Subscription Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/pubsub_subscription
 
 resource "google_pubsub_subscription" "export_asset_changes_to_datadog" {
   labels  = var.labels
@@ -188,7 +188,7 @@ resource "google_pubsub_subscription" "integration" {
 }
 
 # Google Logging Project Sink Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_project_sink
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/logging_project_sink
 
 resource "google_logging_project_sink" "integration" {
   destination = "pubsub.googleapis.com/projects/${var.project}/topics/${google_pubsub_topic.integration.name}"
@@ -204,7 +204,7 @@ resource "google_logging_project_sink" "integration" {
 }
 
 # Google PubSub Topic IAM Member Resource
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic_iam#google_pubsub_topic_iam_member
+# https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/pubsub_topic_iam#google_pubsub_topic_iam_member
 
 resource "google_pubsub_subscription_iam_member" "export_asset_changes_to_datadog" {
   member       = "serviceAccount:${google_service_account.integration.email}"
@@ -221,7 +221,7 @@ resource "google_pubsub_topic_iam_member" "integration" {
 }
 
 # Random ID Resource
-# https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id
+# https://search.opentofu.org/provider/hashicorp/random/latest/docs/resources/id
 
 resource "random_id" "this" {
   prefix      = "tf"
