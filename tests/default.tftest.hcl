@@ -1,3 +1,9 @@
+# OpenTofu Tests
+# https://opentofu.org/docs/cli/commands/test
+
+# OpenTofu Mock Providers
+# https://opentofu.org/docs/cli/commands/test/#the-mock_provider-blocks
+
 mock_provider "datadog" {}
 mock_provider "google" {
   mock_resource "google_service_account" {

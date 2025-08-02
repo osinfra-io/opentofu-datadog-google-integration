@@ -1,8 +1,8 @@
-# <img align="left" width="45" height="45" src="https://github.com/osinfra-io/terraform-datadog-google-integration/assets/1610100/95823e0c-3573-48fa-a2bc-646da96d76d6"> Datadog - Google Cloud Platform Integration Terraform Module
+# <img align="left" width="45" height="45" src="https://github.com/osinfra-io/opentofu-datadog-google-integration/assets/1610100/95823e0c-3573-48fa-a2bc-646da96d76d6"> Datadog - Google Cloud Platform Integration Terraform Module
 
-**[GitHub Actions](https://github.com/osinfra-io/terraform-datadog-google-integration/actions):**
+**[GitHub Actions](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions):**
 
-[![Terraform Tests](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/test.yml/badge.svg)](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/test.yml) [![Dependabot](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/dependabot.yml)
+[![Terraform Tests](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/test.yml/badge.svg)](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/test.yml) [![Dependabot](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/opentofu-datadog-google-integration/actions/workflows/dependabot.yml)
 
 **[Infracost](https://www.infracost.io):**
 
@@ -15,7 +15,7 @@
 Terraform **example** module for Datadog Google Cloud Platform integration.
 
 > [!NOTE]
-> We do not recommend consuming this module like you might a [public module](https://registry.terraform.io/browse/modules). It is a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.
+> We do not recommend consuming this module like you might a [public module](https://search.opentofu.org). It is a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.
 
 ## 🔩 Usage
 
@@ -48,11 +48,9 @@ See the documentation for setting up a local development environment [here](http
 
 ### 🛠️ Tools
 
-- [checkov](https://github.com/bridgecrewio/checkov)
 - [infracost](https://github.com/infracost/infracost)
+- [osinfra-pre-commit-hooks](https://github.com/osinfra-io/pre-commit-hooks)
 - [pre-commit](https://github.com/pre-commit/pre-commit)
-- [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform)
-- [terraform-docs](https://github.com/terraform-docs/terraform-docs)
 
 ### 📋 Skills and Knowledge
 
@@ -63,67 +61,16 @@ Links to documentation and other resources required to develop and iterate in th
 
 ### 🔍 Tests
 
-All tests are [mocked](https://developer.hashicorp.com/terraform/language/tests/mocking) allowing us to test the module without creating infrastructure or requiring credentials. The trade-offs are acceptable in favor of speed and simplicity. In a Terraform test, a mocked provider or resource will generate fake data for all computed attributes that would normally be provided by the underlying provider APIs.
+All tests are [mocked](https://opentofu.org/docs/cli/commands/test/#the-mock_provider-blocks) allowing us to test the module without creating infrastructure or requiring credentials. The trade-offs are acceptable in favor of speed and simplicity. In an OpenTofu test, a mocked provider or resource will generate fake data for all computed attributes that would normally be provided by the underlying provider APIs.
 
 ```none
-cd fixtures/default
+tofu init
 ```
 
 ```none
-terraform init
-```
-
-```none
-terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
+tofu test
 ```
 
 ## 📓 Terraform Documentation
 
 > A child module automatically inherits default (un-aliased) provider configurations from its parent. The provider versions below are informational only and do **not** need to align with the provider configurations from its parent.
-
-<!-- BEGIN_TF_DOCS -->
-### Providers
-
-| Name | Version |
-|------|---------|
-| datadog | 3.54.0 |
-| google | 6.19.0 |
-| random | 3.6.3 |
-
-### Resources
-
-| Name | Type |
-|------|------|
-| [datadog_integration_gcp_sts.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/integration_gcp_sts) | resource |
-| [google_bigquery_dataset.billing_export](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset) | resource |
-| [google_bigquery_dataset_iam_member.billing_export](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member) | resource |
-| [google_cloud_asset_project_feed.export_asset_changes_to_datadog](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_asset_project_feed) | resource |
-| [google_logging_project_sink.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_project_sink) | resource |
-| [google_project_iam_member.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
-| [google_pubsub_subscription.export_asset_changes_to_datadog](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription) | resource |
-| [google_pubsub_subscription.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription) | resource |
-| [google_pubsub_subscription_iam_member.export_asset_changes_to_datadog](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription_iam_member) | resource |
-| [google_pubsub_topic.export_asset_changes_to_datadog](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
-| [google_pubsub_topic.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
-| [google_pubsub_topic_iam_member.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic_iam_member) | resource |
-| [google_service_account.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
-| [google_service_account_iam_member.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_member) | resource |
-| [google_storage_bucket.cloud_cost_management](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
-| [google_storage_bucket_iam_member.cloud_cost_management](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
-| [random_id.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
-
-### Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| api\_key | Datadog API key | `string` | n/a | yes |
-| cloud\_cost\_management\_location | The location for the cloud cost management bucket and Bigquery dataset, only used if enable\_cloud\_cost\_management is true | `string` | `"US"` | no |
-| enable\_cloud\_cost\_management | Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project | `bool` | `false` | no |
-| host\_filters | A list of host filters to apply to the Datadog GCP integration | `list(string)` | `[]` | no |
-| is\_cspm\_enabled | Whether Datadog collects cloud security posture management resources from your GCP project | `bool` | `true` | no |
-| is\_resource\_change\_collection\_enabled | When enabled, Datadog scans for all resource change data in your Google Cloud environment | `bool` | `true` | no |
-| is\_security\_command\_center\_enabled | When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account | `bool` | `true` | no |
-| labels | A map of key/value pairs to assign to the resources being created | `map(string)` | ```{ "system": "datadog" }``` | no |
-| project | The ID of the project in which the resource belongs | `string` | n/a | yes |
-| resource\_collection\_enabled | When enabled, Datadog scans for all resources in your GCP environment | `bool` | `true` | no |
-<!-- END_TF_DOCS -->

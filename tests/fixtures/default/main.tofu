@@ -1,3 +1,6 @@
+# Required Providers
+# https://opentofu.org/docs/language/providers/requirements
+
 terraform {
   required_providers {
     google = {
@@ -21,6 +24,10 @@ module "test" {
   api_key                      = "mock"
   enable_cloud_cost_management = var.enable_cloud_cost_management
   is_cspm_enabled              = true
-  labels                       = local.labels
-  project                      = var.project
+
+  labels = {
+    "mock-key" = "mock-value"
+  }
+
+  project = var.project
 }

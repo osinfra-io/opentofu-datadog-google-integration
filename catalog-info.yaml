@@ -2,11 +2,11 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 
 metadata:
-  name: terraform-datadog-google-integration
+  name: opentofu-datadog-google-integration
   description: Terraform example module for Datadog Google Cloud Platform integration
 
   annotations:
-    github.com/project-slug: osinfra/terraform-datadog-google-integration
+    github.com/project-slug: osinfra/opentofu-datadog-google-integration
     backstage.io/techdocs-ref: dir:.
 
   tags:
