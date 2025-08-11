@@ -25,10 +25,6 @@ resource "datadog_integration_gcp_sts" "this" {
 # https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/bigquery_dataset
 
 resource "google_bigquery_dataset" "billing_export" {
-
-  # Ensure Big Query Datasets are encrypted with Customer Supplied Encryption Keys (CSEK)
-  # checkov:skip=CKV_GCP_81: Not really needed for the billing export dataset
-
   count = var.enable_cloud_cost_management ? 1 : 0
 
   dataset_id    = "billing_export"
@@ -90,16 +86,6 @@ resource "google_service_account_iam_member" "integration" {
 # https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/storage_bucket
 
 resource "google_storage_bucket" "cloud_cost_management" {
-
-  # Ensure public access prevention is enforced on Cloud Storage bucket
-  # checkov:skip=CKV_GCP_114: This need to be a public bucket to allow Datadog to access
-
-  # Ensure Cloud storage has versioning enabled
-  # checkov:skip=CKV_GCP_78: We don't need versioning for the billing export bucket
-
-  # Bucket should log access
-  # checkov:skip=CKV_GCP_62: We don't need logging for the billing export bucket
-
   count = var.enable_cloud_cost_management ? 1 : 0
 
   labels                      = var.labels
@@ -145,22 +131,12 @@ resource "google_project_iam_member" "this" {
 # https://search.opentofu.org/provider/hashicorp/google/latest/docs/resources/pubsub_topic
 
 resource "google_pubsub_topic" "export_asset_changes_to_datadog" {
-
-  # Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)
-  # Not necessary for this use case
-  # checkov:skip=CKV_GCP_83
-
   labels  = var.labels
   name    = "export-asset-changes-to-datadog"
   project = var.project
 }
 
 resource "google_pubsub_topic" "integration" {
-
-  # Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)
-  # Not necessary for this use case
-  # checkov:skip=CKV_GCP_83
-
   labels  = var.labels
   name    = "export-logs-to-datadog"
   project = var.project
