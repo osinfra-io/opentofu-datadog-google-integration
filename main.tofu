@@ -4,9 +4,9 @@
 resource "datadog_integration_gcp_sts" "this" {
   client_email                          = google_service_account.integration.email
   is_cspm_enabled                       = var.is_cspm_enabled
-  is_resource_change_collection_enabled = var.is_resource_change_collection_enabled
+  is_resource_change_collection_enabled = true
   is_security_command_center_enabled    = var.is_security_command_center_enabled
-  resource_collection_enabled           = var.resource_collection_enabled
+  resource_collection_enabled           = true
 }
 
 # Google BigQuery Dataset Resource

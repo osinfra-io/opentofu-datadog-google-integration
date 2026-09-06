@@ -25,12 +25,6 @@ variable "is_cspm_enabled" {
   type        = bool
 }
 
-variable "is_resource_change_collection_enabled" {
-  default     = true
-  description = "When enabled, Datadog scans for all resource change data in your Google Cloud environment"
-  type        = bool
-}
-
 variable "is_security_command_center_enabled" {
   default     = true
   description = "When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account"
@@ -49,10 +43,4 @@ variable "labels" {
 variable "project" {
   description = "The ID of the project in which the resource belongs"
   type        = string
-}
-
-variable "resource_collection_enabled" {
-  default     = true
-  description = "When enabled, Datadog scans for all resources in your GCP environment"
-  type        = bool
 }
